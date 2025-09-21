@@ -22,3 +22,13 @@ Ce repo a pour but de tester vos connaissances et compétences dans un environne
 
 Créé le 19/09/2025 par Hugo
 Mis à jour le 19/09/2025 par Tanguy
+
+# backend
+- Produits avec nom, sous-titre, description, format de base et prix de base.
+- Plusieurs images par produit avec prise en charge des images par défaut.
+- Gestion des stocks avec niveaux de stock.
+-  Variantes de produits pour différents formats et quantités avec tarification dynamique.
+-  Marques avec numéros de référence.
+-  Fournisseurs liés aux marques.
+-  Opérations CRUD complètes avec gestion des images.
+-  Surveillance des niveaux de stock avec indicateurs d'état.

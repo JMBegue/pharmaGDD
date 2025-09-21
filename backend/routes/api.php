@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\AdminAuthController;
+use App\Http\Controllers\BrandController;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\SupplierController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -61,3 +64,33 @@ Route::middleware(['auth:sanctum', 'role.admin'])->group(function () {
         ]);
     });
 });
+// Public routes for supplier
+Route::prefix('supplier')->group(function () {
+    Route::post('/create', [SupplierController::class, 'store']);
+    Route::put('/update', [SupplierController::class, 'update']);
+});
+// Public routes for brand
+Route::prefix('brand')->group(function () {
+    Route::post('/create', [BrandController::class, 'store']);
+    Route::put('/update', [BrandController::class, 'update']);
+});
+
+// Public routes for product
+Route::prefix('product')->group(function () {
+    Route::post('/create', [ProductController::class, 'store']);
+    Route::put('/update', [ProductController::class, 'update']);
+});
+// Additional image management routes
+Route::prefix('products/{product}')->group(function () {
+    Route::post('/images/order', [ProductController::class, 'updateImageOrder'])
+        ->name('products.images.order');
+
+    Route::post('/images/{image}/default', [ProductController::class, 'setDefaultImage'])
+        ->name('products.images.default');
+
+    Route::delete('/images/{image}', [ProductController::class, 'deleteImage'])
+        ->name('products.images.delete');
+});
+
+Route::get('products', [ProductController::class, 'index']);
+
