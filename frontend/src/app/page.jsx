@@ -9,6 +9,7 @@ export default function Home() {
                     <p>Ceci est un exercice NextJS - Laravel</p>
                     <p>Vous devrez mettre en place les exercices listés dans le README.md de la racine du répo.</p>
                 </div>
+                <a href="/admin">Espace Admin</a>
             </div>
         </div>
     )

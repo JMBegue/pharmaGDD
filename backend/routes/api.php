@@ -75,13 +75,29 @@ Route::prefix('brand')->group(function () {
     Route::put('/update', [BrandController::class, 'update']);
 });
 
-// Public routes for product
-Route::prefix('product')->group(function () {
+// Public routes for suppliers
+Route::prefix('suppliers')->group(function () {
+    Route::get('/', [SupplierController::class, 'index']);
+    Route::get('/{id}', [SupplierController::class, 'show']);
+    Route::post('/create', [SupplierController::class, 'store']);
+    Route::patch('/update', [SupplierController::class, 'update']);
+});
+// Public routes for suppliers
+Route::prefix('brands')->group(function () {
+    Route::get('/', [BrandController::class, 'index']);
+    Route::get('/{id}', [BrandController::class, 'show']);
+    Route::post('/create', [BrandController::class, 'store']);
+    Route::patch('/update', [BrandController::class, 'update']);
+});
+
+// Protected routes for admins products
+Route::middleware(['auth:sanctum', 'role.admin'])->prefix('product')->group(function () {
     Route::post('/create', [ProductController::class, 'store']);
-    Route::put('/update', [ProductController::class, 'update']);
+    Route::patch('/update', [ProductController::class, 'update']);
 });
 // Additional image management routes
 Route::prefix('products/{product}')->group(function () {
+    Route::get('/', [ProductController::class, 'show']);
     Route::post('/images/order', [ProductController::class, 'updateImageOrder'])
         ->name('products.images.order');
 
